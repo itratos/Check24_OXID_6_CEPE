@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="ISO-8859-15"?>
+<ORDER version="2.1" type="standard">
+  <ORDER_HEADER>
+    <CONTROL_INFO>
+      <GENERATOR_INFO>CHECK24</GENERATOR_INFO>
+      <GENERATION_DATE>1485788202</GENERATION_DATE>
+    </CONTROL_INFO>
+    <ORDER_INFO>
+      <ORDER_ID>2017-1069818-15</ORDER_ID>
+      <ORDER_DATE>2017-01-30 15:56:37</ORDER_DATE>
+      <PARTIES>
+        <PARTY>
+          <PARTY_ROLE>delivery</PARTY_ROLE>
+          <PARTY_ID type="testsieger">TS-DA-1069818</PARTY_ID>
+          <ADDRESS>
+            <NAME/>
+            <NAME2>VerenaTESTVORNAME</NAME2>
+            <NAME3>ManligTESTNACHNAME</NAME3>
+            <CONTACT_DETAILS>
+              <CONTACT_ID/>
+              <CONTACT_NAME/>
+              <FIRST_NAME/>
+              <TITLE>female</TITLE>
+              <ACADEMIC_TITLE/>
+              <CONTACT_DESCR/>
+              <URL/>
+              <EMAILS/>
+              <AUTHENTIFICATION/>
+            </CONTACT_DETAILS>
+            <STREET>Blumenstr. 13</STREET>
+            <ZIP>80799</ZIP>
+            <CITY>München</CITY>
+            <COUNTRY>Deutschland</COUNTRY>
+            <COUNTRY_CODED>DE</COUNTRY_CODED>
+            <PHONE type="">089 / 10002343</PHONE>
+            <ADDRESS_REMARKS type="address">2.OGTEST</ADDRESS_REMARKS>
+          </ADDRESS>
+        </PARTY>
+        <PARTY>
+          <PARTY_ROLE>invoice</PARTY_ROLE>
+          <PARTY_ID type="testsieger">TS-BA-1069818</PARTY_ID>
+          <ADDRESS>
+            <NAME>CHECK24 Vergleichsportal Shopping GmbH</NAME>
+            <NAME2>Elektronik</NAME2>
+            <NAME3>CHECK24 (nur Rechnungsadresse)</NAME3>
+            <CONTACT_DETAILS>
+              <CONTACT_ID/>
+              <CONTACT_NAME/>
+              <FIRST_NAME/>
+              <TITLE>male</TITLE>
+              <ACADEMIC_TITLE/>
+              <CONTACT_DESCR/>
+              <URL/>
+              <EMAILS/>
+              <AUTHENTIFICATION/>
+            </CONTACT_DETAILS>
+            <STREET>Erika-Mann-Str. 66</STREET>
+            <ZIP>80636</ZIP>
+            <CITY>München</CITY>
+            <COUNTRY>Deutschland</COUNTRY>
+            <COUNTRY_CODED>DE</COUNTRY_CODED>
+            <PHONE type="">089 / 10002343</PHONE>
+            <EMAIL>c-iegggadmakdhgagmahkda-eoaeiiouku@ch24.de</EMAIL>
+          </ADDRESS>
+        </PARTY>
+        <PARTY>
+          <PARTY_ROLE>invoice_issuer</PARTY_ROLE>
+          <PARTY_ID type="testsieger">TS-SA-19061</PARTY_ID>
+          <ADDRESS>
+            <NAME>anndora GmbH</NAME>
+            <NAME2/>
+            <NAME3/>
+            <STREET>Delitzscher Straße 79 b</STREET>
+            <ZIP>06116</ZIP>
+            <CITY>Halle</CITY>
+            <COUNTRY/>
+            <COUNTRY_CODED/>
+          </ADDRESS>
+        </PARTY>
+      </PARTIES>
+      <ORDER_PARTIES_REFERENCE>
+        <BUYER_IDREF type="testsieger">TS-DA-1069818</BUYER_IDREF>
+        <SUPPLIER_IDREF type="testsieger">TS-SA-19061</SUPPLIER_IDREF>
+        <INVOICE_RECIPIENT_IDREF type="testsieger">TS-BA-1069818</INVOICE_RECIPIENT_IDREF>
+      </ORDER_PARTIES_REFERENCE>
+      <CURRENCY>EUR</CURRENCY>
+      <PAYMENT>
+        <TESTSIEGER/>
+        <CASH>
+          <PAYMENT_TERM type="ZZZ">testsieger</PAYMENT_TERM>
+        </CASH>
+      </PAYMENT>
+      <REMARK type="delivery_method">Postversand</REMARK>
+      <REMARK type="payment_date">2017-01-30 15:56:31</REMARK>
+      <REMARK type="shipping_fee">0.00</REMARK>
+      <REMARK type="additional_costs">0.00</REMARK>
+      <REMARK type="payment_type">CHECK24</REMARK>
+      <REMARK type="version_orderapi">1.7</REMARK>
+    </ORDER_INFO>
+  </ORDER_HEADER>
+  <ORDER_ITEM_LIST>
+    <ORDER_ITEM>
+      <LINE_ITEM_ID>0</LINE_ITEM_ID>
+      <PRODUCT_ID>
+        <SUPPLIER_PID>POWXG9025</SUPPLIER_PID>
+      </PRODUCT_ID>
+      <QUANTITY>2</QUANTITY>
+      <ORDER_UNIT>C62</ORDER_UNIT>
+      <PRODUCT_PRICE_FIX>
+        <PRICE_AMOUNT>109.95</PRICE_AMOUNT>
+        <TAX_DETAILS_FIX>
+          <TAX_CATEGORY>standard_rate</TAX_CATEGORY>
+          <TAX>0.19</TAX>
+        </TAX_DETAILS_FIX>
+      </PRODUCT_PRICE_FIX>
+      <PRICE_LINE_AMOUNT>219.9</PRICE_LINE_AMOUNT>
+      <REMARK type="product_name">Hochdruckreiniger 1900 Watt 390 L/h max.135 bar + umfangreiches ZubehÃ¶r</REMARK>
+    </ORDER_ITEM>
+  </ORDER_ITEM_LIST>
+  <ORDER_SUMMARY>
+    <TOTAL_ITEM_NUM>1</TOTAL_ITEM_NUM>
+    <TOTAL_AMOUNT>219.9</TOTAL_AMOUNT>
+  </ORDER_SUMMARY>
+</ORDER>
