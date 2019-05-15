@@ -95,7 +95,7 @@
                                   <option value="">Bitte ausw&auml;hlen!</option>
                                   [{/if}]
                                   [{foreach from=$paymentlist item=payment key=paymentid}]
-                                   <option value="[{$paymentid}]" [{if $testsieger_paymenttype_fallback == $paymentid}] selected="selected"[{/if}]>[{$payment}]</option>
+                                   <option value="[{$payment[0]}]" [{if $testsieger_paymenttype_fallback == $payment[0]}] selected="selected"[{/if}]>[{$payment[1]}]</option>
                                   [{/foreach}]
                               </select>
                           </td>
@@ -113,7 +113,7 @@ Sofern Sie keine Zahlungen über CHECK24.de abwickeln lassen, wählen Sie eine b
                                   <option value="">Bitte ausw&auml;hlen!</option>
                                   [{/if}]
                                   [{foreach from=$paymentlist item=payment key=paymentid}]
-                                   <option value="[{$paymentid}]" [{if $testsieger_paymenttype_ts == $paymentid}] selected="selected"[{/if}]>[{$payment}]</option>
+                                   <option value="[{$payment[0]}]" [{if $testsieger_paymenttype_ts == $payment[0]}] selected="selected"[{/if}]>[{$payment[1]}]</option>
                                   [{/foreach}]
                               </select>
                           </td>

@@ -58,7 +58,7 @@
                                                 )
             );
 
-            $aPaymentList = oxDb::getDb()->getAssoc('SELECT oxid, oxdesc FROM oxpayments  ORDER BY oxsort');
+            $aPaymentList = oxDb::getDb()->getAll('SELECT oxid, oxdesc FROM oxpayments  ORDER BY oxsort');
             $this->_aViewData['paymentlist'] = $aPaymentList;
 
             return 'testsieger_orderimport.tpl';

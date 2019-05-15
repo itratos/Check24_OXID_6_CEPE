@@ -358,7 +358,7 @@
 
             $oxEmail->setSubject($sSubject);
 
-            $sBody = $smarty->fetch("email/html/email_testsieger_resend_confirm.tpl");
+            $sBody = $smarty->fetch("email/html/testsieger_resend_confirm.tpl");
 
             $oxEmail->setBody($sBody);
 
@@ -377,49 +377,41 @@
 			$shopID = $this->getConfig()->getShopId();
 			$buffer = "";
 
-			if ('oxbaseshop' !== $shopID) {
-
+			if (1 !== $shopID) {
 				$buffer = "_" . $shopID;
-
 			}
-
 
             $res = oxDb::getDb( oxDB::FETCH_MODE_ASSOC ) ->execute( 'START TRANSACTION' );
             if (!$res){
-                $this->msglog("SQL Error: " . oxDb::getDb( oxDB::FETCH_MODE_ASSOC ) ->ErrorMsg());
+                $this->msglog("SQL Error: "/* . oxDb::getDb( oxDb::FETCH_MODE_ASSOC ) ->ErrorMsg()*/);
             }
-            $sql = "SELECT MAX(OXCOUNT)+1 AS newordno FROM oxcounters where oxident = 'oxOrder" . $buffer . "';";
+            $sql = "SELECT MAX(OXCOUNT)+1 FROM oxcounters where oxident = 'oxOrder" . $buffer . "';";
 
             $this->msglog("SQL for getting new Ordernumber: " . $sql);
 
-            $res = oxDb::getDb( oxDB::FETCH_MODE_ASSOC ) ->Execute($sql);
-            if (!$res){
-                $this->msglog("SQL Error: " . oxDb::getDb( oxDB::FETCH_MODE_ASSOC ) ->ErrorMsg());
-            }
-
-            if ($res && $res->fields['newordno'] && $res->fields['newordno']>0){
-                $newordno = $res->fields['newordno'];
-                $this->msglog("New Ordernumber is: " . $newordno);
+            $sNewOrderNumber = oxDb::getDb( oxDB::FETCH_MODE_ASSOC ) ->getOne($sql);
+            if ($sNewOrderNumber){
+                $this->msglog("New Ordernumber is: " . $sNewOrderNumber);
             }
             else {
-                $newordno = 1;
+                $sNewOrderNumber = 1;
                 $this->msglog("Get new Ordernumber failed, setting to 1");
             }
 
             $sql = "UPDATE oxcounters
-                    SET OXCOUNT = '$newordno'
+                    SET OXCOUNT = '$sNewOrderNumber'
                     WHERE OXIDENT = 'oxOrder" . $buffer . "'";
 
             $this->msglog("SQL for Update Ordernumber: " . $sql);
 
             $res = oxDb::getDb( oxDB::FETCH_MODE_ASSOC ) ->Execute($sql);
             if (!$res){
-                $this->msglog("SQL Error: " . oxDb::getDb( oxDB::FETCH_MODE_ASSOC ) ->ErrorMsg());
+                $this->msglog("SQL Error: " /*. oxDb::getDb( oxDb::FETCH_MODE_ASSOC ) ->ErrorMsg()*/);
             }
 
             $res = oxDb::getDb( oxDB::FETCH_MODE_ASSOC ) ->Execute('COMMIT');
             if (!$res){
-                $this->msglog("SQL Error: " . oxDb::getDb( oxDB::FETCH_MODE_ASSOC ) ->ErrorMsg());
+                $this->msglog("SQL Error: " /*. oxDb::getDb( oxDb::FETCH_MODE_ASSOC ) ->ErrorMsg()*/);
             }
 
             // load order for later recalculation
@@ -427,11 +419,11 @@
             // $oOrder->load($order_oxid);
 
             // recalculate now
-            $this->msglog("Order nr before recalculation: " . $newordno .'  '. $this->getConfig()->getShopId());// $oOrder->oxorder__oxordernr->value);
+            $this->msglog("Order nr before recalculation: " . $sNewOrderNumber .'  '. $this->getConfig()->getShopId());// $oOrder->oxorder__oxordernr->value);
             //$oOrder->recalculateOrder();
             //$this->msglog("Order nr after recalculation: " . $oOrder->oxorder__oxordernr->value);
 
-			return $newordno;
+			return $sNewOrderNumber;
         }
 
         /**
@@ -468,12 +460,11 @@
 
                     }
 
-                    $res = $db->Execute($query, $row);
-                    //var_dump($query, $row);
+                    $res = $db->Execute($query, array_values($row));
 
                     if (false === $res) {
                         $this->msglog('Error saving into table ' . $table . '. Query was ' . $query . ' - ' . $res, 3);
-                        $this->msglog($db->ErrorMsg(), 3);
+                        /*$this->msglog($db->ErrorMsg(), 3);*/
                         throw new Exception('Error saving into table ' . $table . '. Query was ' . $query);
                     }
 
@@ -492,12 +483,13 @@
         public function revert_sql_save(array $sql) {
 
             $db = oxDb::getDb( oxDB::FETCH_MODE_ASSOC ) ;
-            foreach ($sql AS $table) {
 
-                foreach ($table AS $row) {
+            foreach ($sql AS $table => $rows) {
+
+                foreach ($rows AS $row) {
 
                     if (isset($row['OXID'])) {
-                        $db->Execute('DELETE FROM ? WHERE OXID = ?', array($table, $row['OXID']));
+                        $db->Execute("DELETE FROM ".$table." WHERE OXID = " . $db->quote($row['OXID']));
                         $this->msglog('Reverted OxId ' . $row['OXID'] . ' from table ' . $table);
                     }
 
