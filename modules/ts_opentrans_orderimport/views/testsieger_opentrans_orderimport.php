@@ -382,8 +382,8 @@
 			}
 
             $res = oxDb::getDb( oxDB::FETCH_MODE_ASSOC ) ->execute( 'START TRANSACTION' );
-            if (!$res){
-                $this->msglog("SQL Error: "/* . oxDb::getDb( oxDb::FETCH_MODE_ASSOC ) ->ErrorMsg()*/);
+            if ($res === false){
+                $this->msglog("SQL Error: start transaction error");
             }
             $sql = "SELECT MAX(OXCOUNT)+1 FROM oxcounters where oxident = 'oxOrder" . $buffer . "';";
 
@@ -405,13 +405,13 @@
             $this->msglog("SQL for Update Ordernumber: " . $sql);
 
             $res = oxDb::getDb( oxDB::FETCH_MODE_ASSOC ) ->Execute($sql);
-            if (!$res){
-                $this->msglog("SQL Error: " /*. oxDb::getDb( oxDb::FETCH_MODE_ASSOC ) ->ErrorMsg()*/);
+            if ($res === false){
+                $this->msglog("SQL Error in execution of query: " . $sql);
             }
 
             $res = oxDb::getDb( oxDB::FETCH_MODE_ASSOC ) ->Execute('COMMIT');
-            if (!$res){
-                $this->msglog("SQL Error: " /*. oxDb::getDb( oxDb::FETCH_MODE_ASSOC ) ->ErrorMsg()*/);
+            if ($res === false){
+                $this->msglog("SQL Error: transaction commit error");
             }
 
             // load order for later recalculation
