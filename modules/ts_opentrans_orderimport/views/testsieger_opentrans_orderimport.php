@@ -397,7 +397,6 @@
             if ($res === false){
                 $this->msglog("SQL Error: transaction commit error");
             }
-
             // recalculate now
             //$this->msglog("Order nr before recalculation: " . $sNewOrderNumber .'  '. $this->getConfig()->getShopId());// $oOrder->oxorder__oxordernr->value);
             //$oOrder->recalculateOrder();
