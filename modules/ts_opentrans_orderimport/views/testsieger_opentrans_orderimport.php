@@ -44,6 +44,9 @@
          */
         public function import() {
 
+            //test
+//            $this->testimport2();
+//            return;
 
            // require_once($this->getViewConfig()->getModulePath('ts_opentrans_orderimport') . '/opentrans/opentrans.php');
             //require_once($this->getViewConfig()->getBaseDir() . 'modules/ts_opentrans_orderimport/opentrans/opentrans.php');
@@ -373,7 +376,6 @@
         * @param array $sql
         */
         protected function set_order_no() {
-
 			$shopID = $this->getConfig()->getShopId();
 			$buffer = "";
 
@@ -381,45 +383,23 @@
 				$buffer = "_" . $shopID;
 			}
 
-            $res = oxDb::getDb( oxDB::FETCH_MODE_ASSOC ) ->execute( 'START TRANSACTION' );
+            $res = oxDb::getDb( oxDB::FETCH_MODE_ASSOC )->execute( 'START TRANSACTION' );
             if ($res === false){
                 $this->msglog("SQL Error: start transaction error");
             }
-            $sql = "SELECT MAX(OXCOUNT)+1 FROM oxcounters where oxident = 'oxOrder" . $buffer . "';";
 
-            $this->msglog("SQL for getting new Ordernumber: " . $sql);
+            $oCounter = oxNew(OxidEsales\EshopCommunity\Core\Counter::class);
+            $sNewOrderNumber = $oCounter->getNext('oxOrder' . $buffer);
 
-            $sNewOrderNumber = oxDb::getDb( oxDB::FETCH_MODE_ASSOC ) ->getOne($sql);
-            if ($sNewOrderNumber){
-                $this->msglog("New Ordernumber is: " . $sNewOrderNumber);
-            }
-            else {
-                $sNewOrderNumber = 1;
-                $this->msglog("Get new Ordernumber failed, setting to 1");
-            }
+            $this->msglog("New ordernumber from counter getNext: " . $sNewOrderNumber);
 
-            $sql = "UPDATE oxcounters
-                    SET OXCOUNT = '$sNewOrderNumber'
-                    WHERE OXIDENT = 'oxOrder" . $buffer . "'";
-
-            $this->msglog("SQL for Update Ordernumber: " . $sql);
-
-            $res = oxDb::getDb( oxDB::FETCH_MODE_ASSOC ) ->Execute($sql);
-            if ($res === false){
-                $this->msglog("SQL Error in execution of query: " . $sql);
-            }
-
-            $res = oxDb::getDb( oxDB::FETCH_MODE_ASSOC ) ->Execute('COMMIT');
+            $res = oxDb::getDb( oxDB::FETCH_MODE_ASSOC )->execute('COMMIT');
             if ($res === false){
                 $this->msglog("SQL Error: transaction commit error");
             }
 
-            // load order for later recalculation
-            // $oOrder = oxnew('oxorder');
-            // $oOrder->load($order_oxid);
-
             // recalculate now
-            $this->msglog("Order nr before recalculation: " . $sNewOrderNumber .'  '. $this->getConfig()->getShopId());// $oOrder->oxorder__oxordernr->value);
+            //$this->msglog("Order nr before recalculation: " . $sNewOrderNumber .'  '. $this->getConfig()->getShopId());// $oOrder->oxorder__oxordernr->value);
             //$oOrder->recalculateOrder();
             //$this->msglog("Order nr after recalculation: " . $oOrder->oxorder__oxordernr->value);
 
@@ -1348,6 +1328,21 @@
             if (file_exists($sTestFile)) {
                 copy($sTestFile, $this->get_xml_inbound_path() . basename($sTestFile));
                 $this->process_xml_file($this->get_xml_inbound_path() . basename($sTestFile), $aConfig);
+            }
+        }
+
+        /**
+         * 2019-11-17, Llama: function to test import from inbound folder
+         */
+        public function testimport2() {
+            require_once(  getShopBasePath().'modules/ts_opentrans_orderimport/opentrans/opentrans.php');
+            $aConfig = array(
+                "testsieger_paymenttype_fallback" => "tsinv",
+                "testsieger_shippingtype" => "209e2257a0175dcabcdbec468a624668"
+            );
+            foreach (glob($this->get_xml_inbound_path() ."*.xml") as $filename) {
+                echo "$filename размер " . filesize($filename) . "\n";
+                $this->process_xml_file($this->get_xml_inbound_path() . basename($filename), $aConfig);
             }
         }
 
