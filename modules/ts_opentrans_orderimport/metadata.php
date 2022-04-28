@@ -12,6 +12,7 @@ $aModule = array(
     'extend'       => array(),
     'files'        => array(
         'testsieger_orderimport' => 'ts_opentrans_orderimport/controllers/testsieger_orderimport.php',
-        'testsieger_opentrans_orderimport' => 'ts_opentrans_orderimport/views/testsieger_opentrans_orderimport.php'
-     )
+        'testsieger_opentrans_orderimport' => 'ts_opentrans_orderimport/views/testsieger_opentrans_orderimport.php',
+        'ftps' => 'ts_opentrans_orderimport/ftps/ftps.php'
+    )
 );

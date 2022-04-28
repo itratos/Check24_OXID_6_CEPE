@@ -60,7 +60,7 @@
                             <span title="Bsp.: partnerftp.testsieger.de">(info)</span>
                           </td>
                           <td class="edittext">
-                            <input type="text" class="editinput" size="32" maxlength="32" id="oLockTarget" name="editval[testsieger_ftphost]" value="[{$testsieger_ftphost}]">
+                            <input type="text" class="editinput" size="32" maxlength="64" id="oLockTarget" name="editval[testsieger_ftphost]" value="[{$testsieger_ftphost}]">
                           </td>
                         </tr>
 
