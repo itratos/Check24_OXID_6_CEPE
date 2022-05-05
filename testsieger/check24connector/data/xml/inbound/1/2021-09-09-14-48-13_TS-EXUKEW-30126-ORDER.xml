@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="ISO-8859-15"?>
+<ORDER version="2.1" type="standard">
+  <ORDER_HEADER>
+    <CONTROL_INFO>
+      <GENERATOR_INFO>CHECK24</GENERATOR_INFO>
+      <GENERATION_DATE>1631191693</GENERATION_DATE>
+    </CONTROL_INFO>
+    <ORDER_INFO>
+      <ORDER_ID>EXUKEW</ORDER_ID>
+      <ORDER_DATE>2021-09-09 14:48:08</ORDER_DATE>
+      <PARTIES>
+        <PARTY>
+          <PARTY_ROLE>delivery</PARTY_ROLE>
+          <PARTY_ID type="testsieger">TS-DA-11942198</PARTY_ID>
+          <ADDRESS>
+            <NAME/>
+            <NAME2>Maxi</NAME2>
+            <NAME3>Musterfrau</NAME3>
+            <CONTACT_DETAILS>
+              <CONTACT_ID/>
+              <CONTACT_NAME/>
+              <FIRST_NAME/>
+              <TITLE>female</TITLE>
+              <ACADEMIC_TITLE/>
+              <CONTACT_DESCR/>
+              <URL/>
+              <EMAILS/>
+              <AUTHENTIFICATION/>
+            </CONTACT_DETAILS>
+            <STREET>Musterstr. 1</STREET>
+            <ZIP>80333</ZIP>
+            <CITY>München</CITY>
+            <COUNTRY>Deutschland</COUNTRY>
+            <COUNTRY_CODED>DE</COUNTRY_CODED>
+            <PHONE type="">+4917645717345</PHONE>
+            <ADDRESS_REMARKS type="address"/>
+          </ADDRESS>
+        </PARTY>
+        <PARTY>
+          <PARTY_ROLE>invoice</PARTY_ROLE>
+          <PARTY_ID type="testsieger">TS-BA-11942198</PARTY_ID>
+          <ADDRESS>
+            <NAME>CHECK24 Vergleichsportal Shopping GmbH</NAME>
+            <NAME2>Shopping</NAME2>
+            <NAME3>CHECK24 (nur Rechnungsadresse)</NAME3>
+            <CONTACT_DETAILS>
+              <CONTACT_ID/>
+              <CONTACT_NAME/>
+              <FIRST_NAME/>
+              <TITLE>male</TITLE>
+              <ACADEMIC_TITLE/>
+              <CONTACT_DESCR/>
+              <URL/>
+              <EMAILS/>
+              <AUTHENTIFICATION/>
+            </CONTACT_DETAILS>
+            <STREET>Erika-Mann-Str. 55</STREET>
+            <ZIP>80636</ZIP>
+            <CITY>München</CITY>
+            <COUNTRY>Deutschland</COUNTRY>
+            <COUNTRY_CODED>DE</COUNTRY_CODED>
+            <PHONE type="">+4917645717345</PHONE>
+            <EMAIL>c-ehuiueaamaahueahgmikaed-aaiaoegko@ch24.de</EMAIL>
+          </ADDRESS>
+        </PARTY>
+        <PARTY>
+          <PARTY_ROLE>invoice_issuer</PARTY_ROLE>
+          <PARTY_ID type="testsieger">TS-SA-30126</PARTY_ID>
+          <ADDRESS>
+            <NAME>OXID Testshop OpenTrans 2.1</NAME>
+            <NAME2/>
+            <NAME3/>
+            <STREET>Wallstraße 9-13</STREET>
+            <ZIP>10179</ZIP>
+            <CITY>Berlin</CITY>
+            <COUNTRY/>
+            <COUNTRY_CODED/>
+          </ADDRESS>
+        </PARTY>
+      </PARTIES>
+      <ORDER_PARTIES_REFERENCE>
+        <BUYER_IDREF type="testsieger">TS-DA-11942198</BUYER_IDREF>
+        <SUPPLIER_IDREF type="testsieger">TS-SA-30126</SUPPLIER_IDREF>
+        <INVOICE_RECIPIENT_IDREF type="testsieger">TS-BA-11942198</INVOICE_RECIPIENT_IDREF>
+      </ORDER_PARTIES_REFERENCE>
+      <CURRENCY>EUR</CURRENCY>
+      <PAYMENT>
+        <DEBIT>
+          <PAYMENT_TERM type="unece">25</PAYMENT_TERM>
+        </DEBIT>
+      </PAYMENT>
+      <REMARK type="delivery_method">Postversand</REMARK>
+      <REMARK type="payment_date">2021-09-08 17:50:05</REMARK>
+      <REMARK type="shipping_fee">0.10</REMARK>
+      <REMARK type="additional_costs">0.00</REMARK>
+      <REMARK type="payment_type">CHECK24</REMARK>
+      <REMARK type="version_orderapi">1.7</REMARK>
+    </ORDER_INFO>
+  </ORDER_HEADER>
+  <ORDER_ITEM_LIST>
+    <ORDER_ITEM>
+      <LINE_ITEM_ID>0</LINE_ITEM_ID>
+      <PRODUCT_ID>
+        <SUPPLIER_PID>DEF3</SUPPLIER_PID>
+      </PRODUCT_ID>
+      <QUANTITY>1</QUANTITY>
+      <ORDER_UNIT>C62</ORDER_UNIT>
+      <PRODUCT_PRICE_FIX>
+        <PRICE_AMOUNT>14.99</PRICE_AMOUNT>
+        <TAX_DETAILS_FIX>
+          <TAX_CATEGORY>standard_rate</TAX_CATEGORY>
+          <TAX_TYPE>VAT</TAX_TYPE>
+          <TAX>0.19</TAX>
+        </TAX_DETAILS_FIX>
+      </PRODUCT_PRICE_FIX>
+      <PRICE_LINE_AMOUNT>14.99</PRICE_LINE_AMOUNT>
+      <REMARK type="product_name">Testprodukt: NICHT BESTELLEN: Drei Haufen Pappe für Moebel</REMARK>
+    </ORDER_ITEM>
+  </ORDER_ITEM_LIST>
+  <ORDER_SUMMARY>
+    <TOTAL_ITEM_NUM>1</TOTAL_ITEM_NUM>
+    <TOTAL_AMOUNT>15.09</TOTAL_AMOUNT>
+  </ORDER_SUMMARY>
+</ORDER>

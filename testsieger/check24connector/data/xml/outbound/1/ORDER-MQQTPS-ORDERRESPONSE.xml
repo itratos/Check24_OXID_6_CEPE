@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ORDERRESPONSE xmlns="http://www.opentrans.org/XMLSchema/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bmecat="https://www.bme.de/initiativen/bmecat/bmecat-2005/" xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:default="http://www.bmecat.org/bmecat/2005" xsi:schemaLocation="http://www.opentrans.org/XMLSchema/2.1 https://merchantcenter.check24.de/sdk/opentrans/schema-definitions/opentrans_2_1.xsd http://www.bmecat.org/bmecat/2005 https://merchantcenter.check24.de/sdk/opentrans/schema-definitions/bmecat_2005.xsd http://www.w3.org/2005/05/xmlmime https://merchantcenter.check24.de/sdk/opentrans/schema-definitions/xmlmime.xsd http://www.w3.org/2000/09/xmldsig# https://merchantcenter.check24.de/sdk/opentrans/schema-definitions/xmldsig-core-schema.xsd" version="2.1">
+  <ORDERRESPONSE_HEADER>
+    <CONTROL_INFO>
+      <GENERATOR_INFO>My shop generator v2.0</GENERATOR_INFO>
+      <GENERATION_DATE>2022-05-02T20:14:19</GENERATION_DATE>
+    </CONTROL_INFO>
+    <ORDERRESPONSE_INFO>
+      <ORDER_ID>MQQTPS</ORDER_ID>
+      <ORDERRESPONSE_DATE>2022-05-02T20:14:19</ORDERRESPONSE_DATE>
+      <ORDER_DATE>2021-10-28T16:58:03</ORDER_DATE>
+      <PARTIES>
+        <PARTY>
+          <default:PARTY_ID xmlns="http://www.bmecat.org/bmecat/2005" type="check24">delivery</default:PARTY_ID>
+          <PARTY_ROLE>delivery</PARTY_ROLE>
+          <ADDRESS>
+            <default:NAME2 xmlns="http://www.bmecat.org/bmecat/2005">Christian B3</default:NAME2>
+            <default:NAME3 xmlns="http://www.bmecat.org/bmecat/2005">Hecker B3</default:NAME3>
+            <default:STREET xmlns="http://www.bmecat.org/bmecat/2005">Mendelstraße 83</default:STREET>
+            <default:ZIP xmlns="http://www.bmecat.org/bmecat/2005">48149</default:ZIP>
+            <default:CITY xmlns="http://www.bmecat.org/bmecat/2005">Münster</default:CITY>
+            <default:COUNTRY xmlns="http://www.bmecat.org/bmecat/2005">Deutschland</default:COUNTRY>
+            <default:COUNTRY_CODED xmlns="http://www.bmecat.org/bmecat/2005">DE</default:COUNTRY_CODED>
+            <default:PHONE xmlns="http://www.bmecat.org/bmecat/2005">+49251111111234</default:PHONE>
+            <default:EMAIL xmlns="http://www.bmecat.org/bmecat/2005">c-ehfdhahamaeagukgmikaed-eguiigafge@ch24.de</default:EMAIL>
+          </ADDRESS>
+        </PARTY>
+        <PARTY>
+          <default:PARTY_ID xmlns="http://www.bmecat.org/bmecat/2005" type="check24">supplier</default:PARTY_ID>
+          <PARTY_ROLE>supplier</PARTY_ROLE>
+          <ADDRESS>
+            <default:NAME xmlns="http://www.bmecat.org/bmecat/2005">OXID Testshop OpenTrans 2.1</default:NAME>
+            <default:STREET xmlns="http://www.bmecat.org/bmecat/2005">Wallstraße 9-13</default:STREET>
+            <default:ZIP xmlns="http://www.bmecat.org/bmecat/2005">10179</default:ZIP>
+            <default:CITY xmlns="http://www.bmecat.org/bmecat/2005">Berlin</default:CITY>
+            <default:COUNTRY_CODED xmlns="http://www.bmecat.org/bmecat/2005">DE</default:COUNTRY_CODED>
+          </ADDRESS>
+        </PARTY>
+      </PARTIES>
+      <ORDER_PARTIES_REFERENCE>
+        <default:BUYER_IDREF xmlns="http://www.bmecat.org/bmecat/2005" type="check24">delivery</default:BUYER_IDREF>
+        <default:SUPPLIER_IDREF xmlns="http://www.bmecat.org/bmecat/2005" type="check24">supplier</default:SUPPLIER_IDREF>
+        <SHIPMENT_PARTIES_REFERENCE>
+          <DELIVERY_IDREF type="check24">delivery</DELIVERY_IDREF>
+        </SHIPMENT_PARTIES_REFERENCE>
+      </ORDER_PARTIES_REFERENCE>
+      <REMARKS type="versionorderapi">2.0</REMARKS>
+    </ORDERRESPONSE_INFO>
+  </ORDERRESPONSE_HEADER>
+  <ORDERRESPONSE_ITEM_LIST>
+    <ORDERRESPONSE_ITEM>
+      <LINE_ITEM_ID>O+60rDV3jBvbefmjlU7ePA==</LINE_ITEM_ID>
+      <PRODUCT_ID>
+        <default:SUPPLIER_PID xmlns="http://www.bmecat.org/bmecat/2005">DEF3</default:SUPPLIER_PID>
+        <default:DESCRIPTION_SHORT xmlns="http://www.bmecat.org/bmecat/2005">Testprodukt: NICHT BESTELLEN: Drei Haufen Pappe für Moebel</default:DESCRIPTION_SHORT>
+      </PRODUCT_ID>
+      <QUANTITY>1</QUANTITY>
+      <default:ORDER_UNIT xmlns="http://www.bmecat.org/bmecat/2005">C62</default:ORDER_UNIT>
+      <PRICE_LINE_AMOUNT>14.99</PRICE_LINE_AMOUNT>
+      <SHIPMENT_PARTIES_REFERENCE>
+        <DELIVERY_IDREF type="check24">delivery</DELIVERY_IDREF>
+      </SHIPMENT_PARTIES_REFERENCE>
+    </ORDERRESPONSE_ITEM>
+  </ORDERRESPONSE_ITEM_LIST>
+  <ORDERRESPONSE_SUMMARY>
+    <TOTAL_ITEM_NUM>1</TOTAL_ITEM_NUM>
+    <TOTAL_AMOUNT>14.99</TOTAL_AMOUNT>
+  </ORDERRESPONSE_SUMMARY>
+</ORDERRESPONSE>
