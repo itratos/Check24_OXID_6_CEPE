@@ -212,7 +212,7 @@ class Maintenance extends Maintenance_parent
         }
 
         //save orderchange entry
-        $oItrCheck24OrderChangeRequest = Registry::get(\TestSieger\Check24Connector\Application\Model\ItrCheck24OrderChangeRequest::class);
+        $oItrCheck24OrderChangeRequest = oxNew(\TestSieger\Check24Connector\Application\Model\ItrCheck24OrderChangeRequest::class);
         $oItrCheck24OrderChangeRequest->itrcheck24_orderchangerequest__orderid = new Field($orderId);
         $oItrCheck24OrderChangeRequest->itrcheck24_orderchangerequest__action = new Field($sAction);
         $oItrCheck24OrderChangeRequest->itrcheck24_orderchangerequest__sequenceid = new Field(

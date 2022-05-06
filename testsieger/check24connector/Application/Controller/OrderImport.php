@@ -25,6 +25,7 @@ namespace TestSieger\Check24Connector\Application\Controller;
 use OxidEsales\Eshop\Core\Registry as Registry;
 use OxidEsales\Eshop\Core\DatabaseProvider;
 use TestSieger\Check24Connector\Application\Model\Config as OpentransConfig;
+use TestSieger\Check24Connector\Application\Model\OpentransDocumentOrderchange;
 use TestSieger\Check24Connector\Application\Model\OpentransException;
 
 /**
@@ -154,7 +155,7 @@ class OrderImport extends \OxidEsales\Eshop\Application\Controller\Admin\AdminCo
         $sPendingCancellationRequestQuery =
             "SELECT r.orderid, o.oxordernr, r.action, r.oxtimestamp FROM itrcheck24_orderchangerequest r
                    LEFT JOIN oxorder o ON o.oxtransid = r.orderid
-                   WHERE r.action IN ('request', 'cancellationrequest') AND r.response = 0 ORDER BY r.oxtimestamp DESC";
+                   WHERE r.action IN ('request', 'cancellationrequest', 'returnrequest') AND r.response = 0 ORDER BY r.oxtimestamp DESC";
 
         $oPendingCancellationRequestList->selectString($sPendingCancellationRequestQuery);
         return $oPendingCancellationRequestList->getArray();
@@ -183,12 +184,19 @@ class OrderImport extends \OxidEsales\Eshop\Application\Controller\Admin\AdminCo
             return;
         }
 
+        $sAction = $oDb->getOne("select `action` from itrcheck24_orderchangerequest where orderid = ? order by oxtimestamp desc limit 1", [$sOrderId]);
+
+        $sResponseAction = $sAction == OpentransDocumentOrderchange::ACTION_TYPE_RETURN_REQUEST ?
+            OpentransDocumentOrderchange::ACTION_TYPE_RETURN_CONFIRMATION : OpentransDocumentOrderchange::ACTION_TYPE_CANCELLATION_CONFIRMATION;
+
         //send orderchange document with "cancellationconfirmation" action
         $oProcess = new \TestSieger\Check24Connector\Application\Model\Process('ORDERCHANGE');
-        $src = $oShopOrder->create_document_orderchange(
-            null, null, \TestSieger\Check24Connector\Application\Model\OpentransDocumentOrderchange::ACTION_TYPE_CANCELLATION_CONFIRMATION
-        );
-        $sFileName = 'ORDER-' . $oShopOrder->oxorder__oxtransid->value . '-CANCELLATION-CONFIRM-ORDERCHANGE.xml';
+        $src = $oShopOrder->create_document_orderchange(null, null, $sResponseAction);
+
+        $sActionStr = $sAction == OpentransDocumentOrderchange::ACTION_TYPE_RETURN_REQUEST ?
+            'RETURN-CONFIRMATION' : 'CANCELLATION-CONFIRMATION';
+
+        $sFileName = 'ORDER-' . $oShopOrder->oxorder__oxtransid->value . '-' . $sActionStr . '-ORDERCHANGE.xml';
         $orderChangeWriter = new \TestSieger\Check24Connector\Application\Model\OpentransDocumentWriterOrderchange(
             [$src],
             $oProcess->get_xml_outbound_path() . $sFileName,
