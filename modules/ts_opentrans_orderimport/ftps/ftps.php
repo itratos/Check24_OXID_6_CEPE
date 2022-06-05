@@ -61,6 +61,10 @@ class ftps
         $error_no = curl_errno($ch);
         curl_close($ch);
 
+        if($error_no) {
+            return false;
+        }
+
         $filelist = explode("\n", $filelist);
         $ret = array();
         foreach($filelist as $str) {

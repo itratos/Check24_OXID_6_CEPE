@@ -550,7 +550,7 @@ class testsieger_opentrans_orderimport extends oxUBase {
 
         $remote_filelist = ftps::ftps_getlist( $server_path );
 
-        if (!$remote_filelist || !is_array($remote_filelist)) {
+        if ($remote_filelist === false || !is_array($remote_filelist)) {
             throw new Exception('Could not get remote filelist after successfull login. Check firewall.');
         } else {
             $this->msglog("Got filelist");
