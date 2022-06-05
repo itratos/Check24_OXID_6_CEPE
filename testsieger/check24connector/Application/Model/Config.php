@@ -43,6 +43,6 @@ class Config
      */
     public static function getLogPath()
     {
-        return 'modules/ts_opentrans_orderimport/data/testsieger_logfile.html';
+        return 'modules/testsieger/check24connector/data/testsieger_logfile.html';
     }
 }
