@@ -1,0 +1,47 @@
+#reject-confirmation {
+    display: none;
+    background: #c6c6c6;
+    padding: 20px;
+}
+
+#reject-confirmation .header-text {
+    font-size:16px;
+    margin-bottom:10px;
+}
+
+#reject-confirmation .modal-header .closePop {
+    position:absolute;
+    top:0;
+    right:0;
+}
+
+#reject-confirmation .reject-reason {
+    width:100%;
+    height: 50px;
+    margin-bottom: 30px;
+}
+
+#reject-confirmation .action {
+    display: block;
+    margin: auto;
+    text-align: center;
+}
+
+#reject-confirmation .action .closePop {
+    padding: 6px;
+    width: 45%;
+}
+
+#reject-confirmation .action .btn {
+    padding: 6px;
+    width: 45%;
+}
+
+.check24-orderimport td {
+    width:100%;
+    height:99%;
+    padding-left:25px;
+    padding-bottom:30px;
+    padding-top:10px;
+}
+

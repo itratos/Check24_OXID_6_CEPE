@@ -1,0 +1,293 @@
+<?php
+
+
+namespace Itratos\Check24Connector\Application\Model;
+
+class OpentransDocumentPaymentAccount extends OpentransDocumentPayment
+{
+
+    /**#@+
+     * Constants
+     */
+    /**
+     * BANK_CODE_TYPE_STANDARD
+     *
+     * @var const string
+     */
+    const BANK_CODE_TYPE_STANDARD = '';
+
+    /**
+     * BANK_CODE_TYPE_BIC
+     *
+     * @var const string
+     */
+    const BANK_CODE_TYPE_BIC = 'bic';
+
+    /**
+     * BANK_ACCOUNT_TYPE_STANDARD
+     *
+     * @var const string
+     */
+    const BANK_ACCOUNT_TYPE_STANDARD = '';
+
+    /**
+     * BANK_ACCOUNT_TYPE_IBAN
+     *
+     * @var const string
+     */
+    const BANK_ACCOUNT_TYPE_IBAN = 'iban';
+
+    /**
+     * @var string
+     */
+    private $holder = NULL;
+
+    /**
+     * @var string
+     */
+    private $bank_name = NULL;
+
+    /**
+     * @var string
+     */
+    private $bank_country = NULL;
+
+    /**
+     * @var string
+     */
+    private $bank_code = NULL;
+
+    /**
+     * @var string
+     */
+    private $bank_code_type = NULL;
+
+    /**
+     * @var string
+     */
+    private $bank_account = NULL;
+
+    /**
+     * @var string
+     */
+    private $bank_account_type = NULL;
+
+    /**
+     * Construct a openTrans payment account
+     *
+     * @param string term_type
+     * @param string term_value
+     * @param string holder
+     * @param string bank_name
+     * @param string bank_country
+     * @param string bank_code
+     * @param string bank_code_type
+     * @param string bank_account
+     * @param string bank_account_type
+     */
+    public function __construct(
+        $term_type = NULL,
+        $term_value = NULL,
+        $holder = NULL,
+        $bank_name = NULL,
+        $bank_country = NULL,
+        $bank_code = NULL,
+        $bank_code_type = self::BANK_CODE_TYPE_STANDARD,
+        $bank_account = NULL,
+        $bank_account_type = self::BANK_ACCOUNT_TYPE_STANDARD
+    )
+    {
+
+        if ($term_type !== NULL && !is_string($term_type)) {
+            throw new OpentransException('$term_type must be a string.');
+        }
+
+        if ($term_value !== NULL && !is_string($term_value)) {
+            throw new OpentransException('$term_value must be a string.');
+        }
+
+        if ($holder !== NULL && !is_string($holder)) {
+            throw new OpentransException('$holder must be a string.');
+        }
+
+        if ($bank_name !== NULL && !is_string($bank_name)) {
+            throw new OpentransException('$bank_name must be a string.');
+        }
+
+        if ($bank_country !== NULL && !is_string($bank_country)) {
+            throw new OpentransException('$bank_country must be a string.');
+        }
+
+        if ($bank_code !== NULL && !is_string($bank_code)) {
+            throw new OpentransException('$bank_code must be a string.');
+        }
+
+        if ($bank_code_type !== NULL && !is_string($bank_code_type)) {
+            throw new OpentransException('$bank_code_type must be a string.');
+        }
+
+        if ($bank_account !== NULL && !is_string($bank_account)) {
+            throw new OpentransException('$bank_account must be a string.');
+        }
+
+        if ($bank_account_type !== NULL && !is_string($bank_account_type)) {
+            throw new OpentransException('$bank_account_type must be a string.');
+        }
+
+        parent::__construct(self::TYPE_ACCOUNT, $term_type, $term_value);
+
+        $this->holder = $holder;
+        $this->bank_name = $bank_name;
+        $this->bank_country = $bank_country;
+        $this->bank_code = $bank_code;
+        $this->bank_code_type = $bank_code_type;
+        $this->bank_account = $bank_account;
+        $this->bank_account_type = $bank_account_type;
+    }
+
+    /**
+     * Returns holder
+     *
+     * @return string holder
+     */
+    public function get_holder()
+    {
+        return $this->holder;
+    }
+
+    /**
+     * Returns bank_name
+     *
+     * @return string bank_name
+     */
+    public function get_bank_name()
+    {
+        return $this->bank_name;
+    }
+
+    /**
+     * Returns bank_country
+     *
+     * @return string bank_country
+     */
+    public function get_bank_country()
+    {
+        return $this->bank_country;
+    }
+
+    /**
+     * Returns bank_code
+     *
+     * @return string bank_code
+     */
+    public function get_bank_code()
+    {
+        return $this->bank_code;
+    }
+
+    /**
+     * Returns bank_code_type
+     *
+     * @return string bank_code_type
+     */
+    public function get_bank_code_type()
+    {
+        return $this->bank_code_type;
+    }
+
+    /**
+     * Returns bank_account
+     *
+     * @return string bank_account
+     */
+    public function get_bank_account()
+    {
+        return $this->bank_account;
+    }
+
+    /**
+     * Returns bank_account_type
+     *
+     * @return string bank_account_type
+     */
+    public function get_bank_account_type()
+    {
+        return $this->bank_account_type;
+    }
+
+    /**
+     * Sets holder
+     *
+     * @param string $value
+     * @return void
+     */
+    public function set_holder($value)
+    {
+        if (!is_string($value)) {
+            throw new OpentransException('$value must be a string.');
+        }
+
+        $this->holder = $value;
+    }
+
+    /**
+     * Sets bank_name
+     *
+     * @param string $value
+     * @return void
+     */
+    public function set_bank_name($value)
+    {
+        if (!is_string($value)) {
+            throw new OpentransException('$value must be a string.');
+        }
+
+        $this->bank_name = $value;
+    }
+
+    /**
+     * Sets bank_country
+     *
+     * @param string $value
+     * @return void
+     */
+    public function set_bank_country($value)
+    {
+        if (!is_string($value)) {
+            throw new OpentransException('$value must be a string.');
+        }
+
+        $this->bank_country = $value;
+    }
+
+    /**
+     * Sets bank_code
+     *
+     * @param string $value
+     * @return void
+     */
+    public function set_bank_code($value)
+    {
+        if (!is_string($value)) {
+            throw new OpentransException('$value must be a string.');
+        }
+
+        $this->bank_code = $value;
+    }
+
+    /**
+     * Sets bank_account
+     *
+     * @param string $value
+     * @return void
+     */
+    public function set_bank_account($value)
+    {
+        if (!is_string($value)) {
+            throw new OpentransException('$value must be a string.');
+        }
+
+        $this->bank_account = $value;
+    }
+
+}
