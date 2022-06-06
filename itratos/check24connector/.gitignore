@@ -1,0 +1,6 @@
+/data
+
+# IDE
+/.ide-helper.php
+/.phpstorm.meta.php
+/.idea
