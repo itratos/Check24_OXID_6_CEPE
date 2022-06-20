@@ -16,6 +16,15 @@ in place of
 
 to "require" block in your project composer.json
 
+and repositories block to composer.json:
+
+"repositories": {
+    "itratos": {
+        "type": "path",
+        "url": "source/modules/itratos/check24connector"
+    }
+}
+
 
 3. The module is installed by command:
 

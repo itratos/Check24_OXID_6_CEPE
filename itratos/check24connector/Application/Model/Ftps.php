@@ -77,6 +77,8 @@ class Ftps
         //upload source file from local tmp to remote
         if(self::ftps_put($tmp_filepath, $filepath_to)) {
             $result = self::ftps_delete($filepath_from);
+            //delete file from local tmp
+            unlink($tmp_filepath);
             return $result;
         }
         return false;
