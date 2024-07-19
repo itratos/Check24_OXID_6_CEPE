@@ -1,4 +1,5 @@
 <?php
+    require_once(getShopBasePath().'modules/ts_opentrans_orderimport/opentrans/opentrans_helper.php');
     /**
      * openTrans Orderchange Document Writer standard 2.1
      *
@@ -70,7 +71,7 @@
             // Order info
 
             $oinfo = $header->addChild('ORDERCHANGE_INFO');
-            $oinfo->addChild('ORDER_ID', $src->get_header()->get_orderchangeinfo()->get_order_id());
+            $oinfo->addChild('ORDER_ID', opentrans_helper::formatString($src->get_header()->get_orderchangeinfo()->get_order_id(), 7));
             $oinfo->addChild('ORDERCHANGE_DATE', $src->get_header()->get_orderchangeinfo()->get_orderchange_date());
             $oinfo->addChild('ORDER_DATE', $src->get_header()->get_orderchangeinfo()->get_order_date());
             $oinfo->addChild('ORDERCHANGE_SEQUENCE_ID', $src->get_header()->get_orderchangeinfo()->get_orderchange_sequence_id());
@@ -86,7 +87,7 @@
 
                 $party->addChild('PARTY_ROLE', $src_parties[$i]->get_role());
 
-                $party_id = $party->addChild('PARTY_ID', $src_parties[$i]->get_id()->get_id());
+                $party_id = $party->addChild('PARTY_ID', opentrans_helper::formatString($src_parties[$i]->get_id()->get_id(), 46));
                 $party_id->addAttribute('type', $src_parties[$i]->get_id()->get_type());
 
                 $src_address = $src_parties[$i]->get_address();
@@ -145,9 +146,9 @@
 
             $parties_reference = $oinfo->addChild('ORDER_PARTIES_REFERENCE');
 
-            $src_parties_reference_buyer_idref = $src->get_header()->get_orderchangeinfo()->get_idref(rs_opentrans_document_idref::TYPE_DELIVERY_IDREF);
+            $src_parties_reference_buyer_idref = opentrans_helper::formatString($src->get_header()->get_orderchangeinfo()->get_idref(rs_opentrans_document_idref::TYPE_DELIVERY_IDREF), 46);
             $src_parties_reference_supplier_idref = $src->get_header()->get_orderchangeinfo()->get_idref(rs_opentrans_document_idref::TYPE_SUPPLIER_IDREF);
-            $src_parties_reference_invoice_recipient_idref = $src->get_header()->get_orderchangeinfo()->get_idref(rs_opentrans_document_idref::TYPE_INVOICE_RECIPIENT_IDREF);
+            $src_parties_reference_invoice_recipient_idref = opentrans_helper::formatString($src->get_header()->get_orderchangeinfo()->get_idref(rs_opentrans_document_idref::TYPE_INVOICE_RECIPIENT_IDREF), 46);
 
             $parties_reference_buyer_idref = $parties_reference->addChild('BUYER_IDREF', $src_parties_reference_buyer_idref);
             $parties_reference_buyer_idref->addAttribute('type', 'testsieger');
@@ -227,7 +228,7 @@
 
                 $order_reference = $item->addChild('CUSTOMER_ORDER_REFERENCE');
 
-                $order_reference->addChild('ORDER_ID', $src->get_header()->get_orderchangeinfo()->get_order_id());
+                $order_reference->addChild('ORDER_ID', opentrans_helper::formatString($src->get_header()->get_orderchangeinfo()->get_order_id(), 7));
                 $order_reference->addChild('LINE_ITEM_ID', ($src_items[$i]->get_line_item_id() !== NULL ? $src_items[$i]->get_line_item_id() : $i));
 
                 $parties_reference_delivery_idref = $item->addChild('SHIPMENT_PARTIES_REFERENCE')->addChild('DELIVERY_IDREF', $src_parties_reference_buyer_idref);

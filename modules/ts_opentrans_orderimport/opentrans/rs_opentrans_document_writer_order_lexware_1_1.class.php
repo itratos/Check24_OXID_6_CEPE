@@ -1,4 +1,5 @@
 <?php
+    require_once(getShopBasePath().'modules/ts_opentrans_orderimport/opentrans/opentrans_helper.php');
     /**
      * openTrans Document Writer lexware 1.1
      *
@@ -97,7 +98,7 @@
                     $party = $parties->addChild(strtoupper($role_key) . '_PARTY')->addChild('PARTY');
                 }
 
-                $party_id = $party->addChild('PARTY_ID', $src_parties[$i]->get_id()->get_id());
+                $party_id = $party->addChild('PARTY_ID', opentrans_helper::formatString($src_parties[$i]->get_id()->get_id(), 46));
                 $party_id->addAttribute('type', $src_parties[$i]->get_id()->get_type());
 
                 $src_address = $src_parties[$i]->get_address();

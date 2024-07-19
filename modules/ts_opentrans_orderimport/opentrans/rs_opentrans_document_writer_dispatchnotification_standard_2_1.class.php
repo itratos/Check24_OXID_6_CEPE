@@ -1,4 +1,5 @@
 <?php
+    require_once(getShopBasePath().'modules/ts_opentrans_orderimport/opentrans/opentrans_helper.php');
     /**
      * openTrans Dispatchnotification Document Writer standard 2.1
      *
@@ -84,7 +85,7 @@
 
                 $party->addChild('PARTY_ROLE', $src_parties[$i]->get_role());
 
-                $party_id = $party->addChild('PARTY_ID', $src_parties[$i]->get_id()->get_id());
+                $party_id = $party->addChild('PARTY_ID', opentrans_helper::formatString($src_parties[$i]->get_id()->get_id(), 46));
                 $party_id->addAttribute('type', $src_parties[$i]->get_id()->get_type());
 
                 $src_address = $src_parties[$i]->get_address();
@@ -213,7 +214,7 @@
                 }
 
                 $order_reference = $item->addChild('ORDER_REFERENCE');
-                $order_reference->addChild('ORDER_ID', $src->get_header()->get_dispatchnotificationinfo()->get_dispatchnotification_id());
+                $order_reference->addChild('ORDER_ID', opentrans_helper::formatString($src->get_header()->get_dispatchnotificationinfo()->get_dispatchnotification_id(), 7));
                 $order_reference->addChild('LINE_ITEM_ID', ($src_items[$i]->get_line_item_id() !== NULL ? $src_items[$i]->get_line_item_id() : $i));
 
                 $parties_reference_delivery_idref = $item->addChild('SHIPMENT_PARTIES_REFERENCE')->addChild('DELIVERY_IDREF', $src_parties_reference_delivery_idref);

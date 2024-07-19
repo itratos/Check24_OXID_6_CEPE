@@ -68,7 +68,7 @@ class ftps
         $filelist = explode("\n", $filelist);
         $ret = array();
         foreach($filelist as $str) {
-            if(preg_match('/(\S+\.xml)/', $str, $m)) {
+            if(preg_match('/(\S+\.xml)/i', $str, $m)) {
                 $ret[] = $m[1];
             }
         }

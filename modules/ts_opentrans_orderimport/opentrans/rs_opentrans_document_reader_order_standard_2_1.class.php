@@ -191,7 +191,8 @@
                             $opentrans_address_contact_details->set_contact_id($xml_address_contact_details->as_string('CONTACT_ID', false));
                             $opentrans_address_contact_details->set_contact_name($xml_address_contact_details->as_string('CONTACT_NAME', false));
                             $opentrans_address_contact_details->set_first_name($xml_address_contact_details->as_string('FIRST_NAME', false));
-                            $opentrans_address_contact_details->set_title($xml_address_contact_details->as_string('TITLE', false));
+                            //changed by itratos: title is set to empty
+                            //$opentrans_address_contact_details->set_title('');
                             $opentrans_address_contact_details->set_academic_title($xml_address_contact_details->as_string('ACADEMIC_TITLE', false));
                             $opentrans_address_contact_details->set_contact_descr($xml_address_contact_details->as_string('CONTACT_DESCR', false));
                             $opentrans_address_contact_details->set_url($xml_address_contact_details->as_string('URL', false));
