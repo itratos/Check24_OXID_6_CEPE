@@ -65,7 +65,7 @@ class OpentransDocumentWriterDispatchNotification extends OpentransDocumentWrite
 
         for ($i = 0, $i_max = count($src_parties); $i < $i_max; ++$i) {
             $party = $parties->addChild('PARTY');
-            $party_id = $party->addChild('PARTY_ID', $src_parties[$i]->get_id()->get_id(), $NAMESPACE_BMECAT);
+            $party_id = $party->addChild('PARTY_ID', OpentransHelper::formatString($src_parties[$i]->get_id()->get_id(), 46), $NAMESPACE_BMECAT);
             $party_id->addAttribute('type', $src_parties[$i]->get_id()->get_type());
             if ($sPartyRole = $src_parties[$i]->get_role()) {
                 $party->addChild('PARTY_ROLE', $sPartyRole);
@@ -195,7 +195,7 @@ class OpentransDocumentWriterDispatchNotification extends OpentransDocumentWrite
             }*/
 
             $order_reference = $item->addChild('ORDER_REFERENCE');
-            $order_reference->addChild('ORDER_ID', $src->get_header()->get_dispatchnotificationinfo()->get_order_id());
+            $order_reference->addChild('ORDER_ID', OpentransHelper::formatString($src->get_header()->get_dispatchnotificationinfo()->get_order_id(), 7));
             $order_reference->addChild('LINE_ITEM_ID', $sLineItemId);
 
 

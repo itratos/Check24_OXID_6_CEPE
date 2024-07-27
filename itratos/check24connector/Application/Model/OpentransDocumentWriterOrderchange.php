@@ -39,7 +39,7 @@ class OpentransDocumentWriterOrderchange extends OpentransDocumentWriter
 
         // Order info
         $oinfo = $header->addChild('ORDERCHANGE_INFO');
-        $oinfo->addChild('ORDER_ID', $src->get_header()->get_orderchangeinfo()->get_order_id());
+        $oinfo->addChild('ORDER_ID', OpentransHelper::formatString($src->get_header()->get_orderchangeinfo()->get_order_id(), 7));
         $oinfo->addChild('ORDERCHANGE_DATE', $src->get_header()->get_orderchangeinfo()->get_orderchange_date());
         if ($sOrderDate = $src->get_header()->get_orderchangeinfo()->get_order_date()) {
             $oinfo->addChild('ORDER_DATE', $sOrderDate);
@@ -59,7 +59,7 @@ class OpentransDocumentWriterOrderchange extends OpentransDocumentWriter
 
         for ($i = 0, $i_max = count($src_parties); $i < $i_max; ++$i) {
             $party = $parties->addChild('PARTY');
-            $party_id = $party->addChild('PARTY_ID', $src_parties[$i]->get_id()->get_id(), $NAMESPACE_BMECAT);
+            $party_id = $party->addChild('PARTY_ID', OpentransHelper::formatString($src_parties[$i]->get_id()->get_id(), 46), $NAMESPACE_BMECAT);
             $party_id->addAttribute('type', $src_parties[$i]->get_id()->get_type());
             if ($sPartyRole = $src_parties[$i]->get_role()) {
                 $party->addChild('PARTY_ROLE', $sPartyRole);
@@ -128,7 +128,7 @@ class OpentransDocumentWriterOrderchange extends OpentransDocumentWriter
         // creating IDREFs for Parties
         $parties_reference = $oinfo->addChild('ORDER_PARTIES_REFERENCE');
 
-        $src_parties_reference_buyer_idref = $src->get_header()->get_orderchangeinfo()->get_idref(OpentransDocumentIdref::TYPE_DELIVERY_IDREF);
+        $src_parties_reference_buyer_idref = OpentransHelper::formatString($src->get_header()->get_orderchangeinfo()->get_idref(OpentransDocumentIdref::TYPE_DELIVERY_IDREF), 46);
         $src_parties_reference_supplier_idref = $src->get_header()->get_orderchangeinfo()->get_idref(OpentransDocumentIdref::TYPE_SUPPLIER_IDREF);
         //$src_parties_reference_invoice_recipient_idref = $src->get_header()->get_orderchangeinfo()->get_idref(OpentransDocumentIdref::TYPE_INVOICE_RECIPIENT_IDREF);
 
@@ -196,7 +196,7 @@ class OpentransDocumentWriterOrderchange extends OpentransDocumentWriter
             }
 
             $order_reference = $item->addChild('CUSTOMER_ORDER_REFERENCE');
-            $order_reference->addChild('ORDER_ID', $src->get_header()->get_orderchangeinfo()->get_order_id());
+            $order_reference->addChild('ORDER_ID', OpentransHelper::formatString($src->get_header()->get_orderchangeinfo()->get_order_id(), 7));
             $order_reference->addChild('LINE_ITEM_ID', $sLineItemId);
 
             if ($src_parties_reference_buyer_idref) {
