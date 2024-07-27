@@ -574,7 +574,9 @@ class testsieger_opentrans_orderimport extends oxUBase {
                 continue;
             }
 
-            if (in_array(basename($filename_with_path).'.xml', $this->get_archived_filenames(true))) {
+            if (in_array(basename($filename_with_path).'.xml', $this->get_archived_filenames(true))
+                || in_array(basename($filename_with_path).'.XML', $this->get_archived_filenames(true))
+            ) {
                 $this->msglog("Skipping download of already archived $filename_with_path");
                 continue;
             }
