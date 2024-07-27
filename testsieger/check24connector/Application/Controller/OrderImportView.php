@@ -948,8 +948,9 @@ class OrderImportView extends \OxidEsales\Eshop\Application\Controller\FrontendC
             "testsieger_shippingtype" => "209e2257a0175dcabcdbec468a624668"
         ];
         $sTestFile = getShopBasePath() . "tmp/2015-04-06-09-28-06_TS-2015-538651-1-8337-ORDER.xml";
+        $sTestFileALT = getShopBasePath() . "tmp/2015-04-06-09-28-06_TS-2015-538651-1-8337-ORDER.XML";
         $oProcess = new Process('ORDER');
-        if (file_exists($sTestFile)) {
+        if (file_exists($sTestFile) || file_exists($sTestFileALT)) {
             copy($sTestFile, $oProcess->get_xml_inbound_path() . basename($sTestFile));
             $this->process_xml_file($oProcess->get_xml_inbound_path() . basename($sTestFile), $aConfig);
         }

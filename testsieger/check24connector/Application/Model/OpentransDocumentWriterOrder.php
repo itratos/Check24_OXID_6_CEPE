@@ -74,7 +74,7 @@ class OpentransDocumentWriterOrder extends OpentransDocumentWriter
         // Order info
 
         $oinfo = $header->addChild('ORDER_INFO');
-        $oinfo->addChild('ORDER_ID', $src->get_header()->get_orderinfo()->get_order_id());
+        $oinfo->addChild('ORDER_ID', OpentransHelper::formatString($src->get_header()->get_orderinfo()->get_order_id(), 7));
         $oinfo->addChild('ORDER_DATE', $src->get_header()->get_orderinfo()->get_order_date());
 
         // Order Parties
@@ -86,7 +86,7 @@ class OpentransDocumentWriterOrder extends OpentransDocumentWriter
 
             $party = $parties->addChild('PARTY');
 
-            $party_id = $party->addChild('PARTY_ID', $src_parties[$i]->get_id()->get_id());
+            $party_id = $party->addChild('PARTY_ID', OpentransHelper::formatString($src_parties[$i]->get_id()->get_id(), 46));
             $party_id->addAttribute('type', $src_parties[$i]->get_id()->get_type());
 
             $party->addChild('PARTY_ROLE', $src_parties[$i]->get_role());
@@ -108,7 +108,8 @@ class OpentransDocumentWriterOrder extends OpentransDocumentWriter
                 $contact_details->addChild('CONTACT_ID', $src_contact_details->get_contact_id());
                 $contact_details->addChild('CONTACT_NAME', $src_contact_details->get_contact_name());
                 $contact_details->addChild('FIRST_NAME', $src_contact_details->get_first_name());
-                $contact_details->addChild('TITLE', $src_contact_details->get_title());
+                $childTitle = $contact_details->addChild('TITLE');
+                $childTitle[0] = '';
                 $contact_details->addChild('ACADEMIC_TITLE', $src_contact_details->get_academic_title());
                 $contact_details->addChild('CONTACT_DESCR', $src_contact_details->get_contact_descr());
                 $contact_details->addChild('URL', $src_contact_details->get_url());
@@ -165,9 +166,9 @@ class OpentransDocumentWriterOrder extends OpentransDocumentWriter
         // creating IDREFs for Parties
 
         $parties_reference = $oinfo->addChild('ORDER_PARTIES_REFERENCE');
-        $src_parties_reference_buyer_idref = $src->get_header()->get_orderinfo()->get_idref(OpentransDocumentIdref::TYPE_DELIVERY_IDREF);
+        $src_parties_reference_buyer_idref = OpentransHelper::formatString($src->get_header()->get_orderinfo()->get_idref(OpentransDocumentIdref::TYPE_DELIVERY_IDREF), 46);
         $src_parties_reference_supplier_idref = $src->get_header()->get_orderinfo()->get_idref(OpentransDocumentIdref::TYPE_SUPPLIER_IDREF);
-        $src_parties_reference_invoice_recipient_idref = $src->get_header()->get_orderinfo()->get_idref(OpentransDocumentIdref::TYPE_INVOICE_RECIPIENT_IDREF);
+        $src_parties_reference_invoice_recipient_idref = OpentransHelper::formatString($src->get_header()->get_orderinfo()->get_idref(OpentransDocumentIdref::TYPE_INVOICE_RECIPIENT_IDREF), 46);
 
         $parties_reference_buyer_idref = $parties_reference->addChild('BUYER_IDREF', $src_parties_reference_buyer_idref);
         $parties_reference_buyer_idref->addAttribute('type', OpentransDocumentPartyid::TYPE_CHECK24);

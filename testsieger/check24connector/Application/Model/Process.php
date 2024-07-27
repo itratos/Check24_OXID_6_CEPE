@@ -65,7 +65,7 @@ class Process
 
         $found_new = false;
         foreach ($remote_filelist as $remotefile) {
-            if (false === strpos($remotefile, '-' . $this->_filetype . '.xml')) {
+            if (false === stripos($remotefile, '-' . $this->_filetype . '.xml')) {
                 continue;
             }
             // Check for duplicate
@@ -74,7 +74,9 @@ class Process
                 continue;
             }
 
-            if (in_array(basename($remotefile) . '.xml', $this->get_archived_filenames(true))) {
+            if (in_array(basename($remotefile) . '.xml', $this->get_archived_filenames(true))
+                || in_array(basename($remotefile) . '.XML', $this->get_archived_filenames(true))
+            ) {
                 Logger::msglog("Skipping download of already archived $remotefile");
                 continue;
             }
@@ -83,7 +85,6 @@ class Process
             $remote_filepath = '/outbound/' . $remotefile;
             $local_filepath = $this->get_xml_inbound_path() . basename($remotefile);
             Logger::msglog("Saving to local file $local_filepath");
-
             $success = Ftps::ftps_get($remote_filepath, $local_filepath);
 
             if ($success) {
@@ -158,7 +159,8 @@ class Process
      */
     public function get_order_filenames($basename_only = false)
     {
-        $filelist = glob($this->get_xml_inbound_path() . '*-' . $this->_filetype . '.xml');
+        $filelist = glob($this->get_xml_inbound_path() . '*-' . $this->_filetype . '.[xX][mM][lL]');
+
         if (!is_array($filelist)) $filelist = array();
         if ($basename_only && count($filelist) > 0) {
             foreach ($filelist as $k => $v) {
@@ -174,7 +176,7 @@ class Process
      */
     protected function get_archived_filenames($basename_only)
     {
-        $filelist = glob($this->get_xml_inbound_path() . 'archive/*-ORDER.xml');
+        $filelist = glob($this->get_xml_inbound_path() . 'archive/*-ORDER.[xX][mM][lL]');
         if (!is_array($filelist)) $filelist = array();
         if ($basename_only && count($filelist) > 0) {
             foreach ($filelist as $k => $v) {
@@ -220,8 +222,6 @@ class Process
 
     /**
      * Set lock to prevent concurrent execution.
-     *
-     * @throws rs_opentrans_exception('Unable to establish concurrency lock file.');
      */
     public function concurrency_lock_set()
     {

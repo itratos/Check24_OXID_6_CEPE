@@ -491,7 +491,7 @@ class OpentransDocumentAddress
     public function add_email($value)
     {
 
-        if (!is_string($value) || !preg_match("/[\.a-z0-9_-]+@[a-z0-9-]{2,}\.[a-z]{2,4}$/i", $value)) {
+        if (!is_string($value) || !preg_match("/[\.a-z0-9_-]+@[a-z0-9-\.]{2,}\.[a-z]{2,4}$/i", $value)) {
             throw new OpentransException('$value "' . $value . '" is not a e-mail valid string.');
         }
 

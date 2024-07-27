@@ -78,7 +78,7 @@ class OpentransDocumentWriterOrderLexware extends OpentransDocumentWriter
         // Order info
 
         $oinfo = $header->addChild('ORDER_INFO');
-        $oinfo->addChild('ORDER_ID', $src->get_header()->get_orderinfo()->get_order_id());
+        $oinfo->addChild('ORDER_ID', OpentransHelper::formatString($src->get_header()->get_orderinfo()->get_order_id(), 7));
         $oinfo->addChild('ORDER_DATE', $src->get_header()->get_orderinfo()->get_order_date());
 
         // Order Parties
@@ -102,7 +102,7 @@ class OpentransDocumentWriterOrderLexware extends OpentransDocumentWriter
                 $party = $parties->addChild(strtoupper($role_key) . '_PARTY')->addChild('PARTY');
             }
 
-            $party_id = $party->addChild('PARTY_ID', $src_parties[$i]->get_id()->get_id());
+            $party_id = $party->addChild('PARTY_ID', OpentransHelper::formatString($src_parties[$i]->get_id()->get_id(), 46));
             $party_id->addAttribute('type', $src_parties[$i]->get_id()->get_type());
 
             $src_address = $src_parties[$i]->get_address();
