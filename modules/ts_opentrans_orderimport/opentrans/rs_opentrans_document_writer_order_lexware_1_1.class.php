@@ -74,7 +74,7 @@
             // Order info
 
             $oinfo = $header->addChild('ORDER_INFO');
-            $oinfo->addChild('ORDER_ID', $src->get_header()->get_orderinfo()->get_order_id());
+            $oinfo->addChild('ORDER_ID', opentrans_helper::formatString($src->get_header()->get_orderinfo()->get_order_id(), 7));
             $oinfo->addChild('ORDER_DATE', $src->get_header()->get_orderinfo()->get_order_date());
 
             // Order Parties
